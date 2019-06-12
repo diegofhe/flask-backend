@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+flask = "*"
+flask-sqlalchemy = "*"
+pymysql = "*"
+flask-migrate = "*"
+flask-script = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+start = "set FLASK_APP=src/main && flask run"
