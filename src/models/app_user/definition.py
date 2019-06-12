@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from src.database import db
+from marshmallow import Schema, fields
 
 class AppUser(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,3 +17,9 @@ class AppUser(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
         print('noo')
+
+class AppUserSchema(Schema):
+    id = fields.Number()
+    username = fields.Str()
+    email = fields.Str()
+   

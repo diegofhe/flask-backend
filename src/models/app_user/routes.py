@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from flask import Flask, jsonify, request, Blueprint
-from src.models.app_user.definition import AppUser
+from src.models.app_user.definition import AppUser, AppUserSchema
 from src.database import db
 
 rootBase = '/appUser/'

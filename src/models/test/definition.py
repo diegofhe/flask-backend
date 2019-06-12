@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from src.database import db
+from marshmallow import Schema, fields
 
 class Test(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,9 +11,12 @@ class Test(db.Model):
     def __init__(self, username, email):
         self.username = username
         self.email = email
-        print('initialize')
-        print(self)
 
     def __repr__(self):
         return '<User %r>' % self.username
-        print('noo')
+
+class TestSchema(Schema):
+    id = fields.Number()
+    username = fields.Str()
+    email = fields.Str()
+   
