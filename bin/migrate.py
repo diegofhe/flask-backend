@@ -1,3 +1,5 @@
+#https://flask-migrate.readthedocs.io/en/latest/
+#
 #from base root directory
 #pipenv shell
 #python -m bin.migrate db init
