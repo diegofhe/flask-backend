@@ -11,6 +11,7 @@ flask-sqlalchemy = "*"
 pymysql = "*"
 flask-migrate = "*"
 flask-script = "*"
+marshmallow = "*"
 
 [requires]
 python_version = "3.7"
