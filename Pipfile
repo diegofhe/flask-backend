@@ -12,9 +12,12 @@ pymysql = "*"
 flask-migrate = "*"
 flask-script = "*"
 marshmallow = "*"
+pendulum = "==2.0.2"
+flask-praetorian = "*"
+flask-cors = "==3.0.8"
 
 [requires]
 python_version = "3.7"
 
 [scripts]
-start = "set FLASK_APP=src/main && flask run"
+start = "set FLASK_APP=src/main && set FLASK_ENV=development && set FLASK_DEBUG=1 && flask run"
