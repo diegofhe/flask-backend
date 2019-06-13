@@ -1,8 +1,8 @@
 # coding=utf-8
 
-from flask import Flask, jsonify, request, Blueprint
+from flask import jsonify, Blueprint
 from src.models.test.definition import Test, TestSchema
-from src.database import db
+from src.config.database import db
 
 rootBase = '/test/'
 test = Blueprint('test', __name__)
@@ -17,8 +17,6 @@ def makeDummy():
 
 @test.route(f'{rootBase}', methods=['GET'])
 def getAll():
-
     schema = TestSchema(many = True)
     elements = schema.dump(db.session.query(Test).all())
-
     return jsonify(elements.data);

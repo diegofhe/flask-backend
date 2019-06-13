@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from src.database import db
+from src.config.database import db
 from marshmallow import Schema, fields
 
 class Test(db.Model):
