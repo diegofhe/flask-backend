@@ -9,7 +9,7 @@ test = Blueprint('test', __name__)
 
 @test.route(f'{rootBase}makeDummy')
 def makeDummy():
-    test = Test('diego', 'diegofhrg@gmail.com')
+    test = Test('test1')
     print(test)
     db.session.add(test)
     db.session.commit()
@@ -18,5 +18,6 @@ def makeDummy():
 @test.route(f'{rootBase}', methods=['GET'])
 def getAll():
     schema = TestSchema(many = True)
-    elements = schema.dump(db.session.query(Test).all())
-    return jsonify(elements.data);
+    tests_queried = db.session.query(Test).all()
+    tests_dumped = schema.dump(tests_queried)
+    return jsonify(tests_dumped.data)

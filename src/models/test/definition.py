@@ -5,18 +5,16 @@ from marshmallow import Schema, fields
 
 class Test(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(80))
 
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
+    def __init__(self, name):
+        self.name = name
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.name
 
 class TestSchema(Schema):
     id = fields.Number()
-    username = fields.Str()
-    email = fields.Str()
+    name = fields.Str()
+
    
