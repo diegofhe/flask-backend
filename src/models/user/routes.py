@@ -5,7 +5,6 @@ import flask_praetorian
 from src.models.user.definition import User, UserSchema
 from src.config.database import db
 from src.config.prestorian import guard
-from src.models.user.utils import copy_leaving_out
 
 rootBase = '/Users'
 users = Blueprint('users', __name__)
