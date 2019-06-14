@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from src.config.database import db
-
+from marshmallow import Schema, fields
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,3 +31,11 @@ class User(db.Model):
 
     def is_valid(self):
         return self.is_active
+
+
+class UserSchema(Schema):
+    id = fields.Number()
+    email = fields.Str()
+    password = fields.Str()
+    roles = fields.Str()
+    is_active = fields.Bool()
