@@ -5,6 +5,7 @@ import flask_praetorian
 from src.models.user.definition import User, UserSchema
 from src.config.database import db
 from src.config.prestorian import guard
+from src.models.user.utils import copy_leaving_out
 
 rootBase = '/Users'
 users = Blueprint('users', __name__)
@@ -40,9 +41,13 @@ def login():
     req = request.get_json(force=True)
     email = req.get('email', None)
     password = req.get('password', None)
-    user = guard.authenticate(email, password)
-    ret = {'access_token': guard.encode_jwt_token(user)}
-    return (jsonify(ret), 200)
+    user_queried = guard.authenticate(email, password)
+    token = guard.encode_jwt_token(user_queried);
+    # include user
+    schema = UserSchema(many=False)
+    user_dumped = schema.dump(user_queried)
+    result = {'access_token': token, 'user': user_dumped.data}
+    return (jsonify(result), 200)
 
 
 @users.route(f'{rootBase}/signin', methods=['POST'])

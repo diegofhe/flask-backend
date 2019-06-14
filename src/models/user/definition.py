@@ -36,6 +36,5 @@ class User(db.Model):
 class UserSchema(Schema):
     id = fields.Number()
     email = fields.Str()
-    password = fields.Str()
     roles = fields.Str()
     is_active = fields.Bool()
