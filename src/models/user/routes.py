@@ -2,6 +2,7 @@
 
 from flask import Blueprint, request, jsonify, render_template
 import flask_praetorian
+import os
 
 from src.models.user.definition import User, UserSchema
 from src.config.database import db
@@ -67,7 +68,7 @@ def signin():
     ))
     db.session.commit()
     msg = Message("Welcome to REal Dashboard", recipients=[email])
-    msg.html = render_template('welcome_email.html', name = email, link = 'http:localhost:4200')
+    msg.html = render_template('welcome_email.html', name = email, link = os.environ.get('FRONT_END_URL') )
     mail.send(msg)
     return jsonify("User Signed Successfully"), 200
 
