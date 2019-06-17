@@ -1,11 +1,13 @@
 # coding=utf-8
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 import flask_praetorian
+
 from src.models.user.definition import User, UserSchema
 from src.config.database import db
 from src.config.prestorian import guard
-
+from flask_mail import Message
+from src.config.mailer import mail
 rootBase = '/Users'
 users = Blueprint('users', __name__)
 
@@ -64,6 +66,9 @@ def signin():
         roles=''
     ))
     db.session.commit()
+    msg = Message("Welcome to REal Dashboard", recipients=[email])
+    msg.html = render_template('welcome_email.html', name = email, link = 'http:localhost:4200')
+    mail.send(msg)
     return jsonify("User Signed Successfully"), 200
 
 
