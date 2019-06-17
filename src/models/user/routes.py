@@ -78,7 +78,7 @@ def send_password_recovery_mail():
     email = req.get('email', None)
     user_found = db.session.query(User).filter_by(email=email).first()
     if user_found is None:
-        return jsonify({"error": "EmailNotRegistered", "message": "The email is not found", "status_code": "404"}), 404
+        return jsonify({"error": "EmailNotRegistered", "message": "The email was not found", "status_code": "404"}), 404
     temp_token = guard.encode_jwt_token(user_found, pendulum.duration(minutes=TOKEN_LIFESPAN));
     msg = Message("Password reset REal Dashboard", recipients=[email])
     link = os.environ.get('FRONT_END_URL') + '/public/account/recover-password/' + temp_token
