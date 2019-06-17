@@ -15,6 +15,7 @@ marshmallow = "*"
 pendulum = "==2.0.2"
 flask-praetorian = "*"
 flask-cors = "==3.0.8"
+flask-mail = "*"
 
 [requires]
 python_version = "3.7"
